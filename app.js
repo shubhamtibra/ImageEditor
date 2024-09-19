@@ -1,10 +1,11 @@
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
-const { imageUpload } = require('./src/image/image');
+const { imageUpload, imageEdit } = require('./src/image/image');
 const cors = require('cors')
-
+var bodyParser = require('body-parser')
 const app = express();
+app.use(bodyParser.json())
 const port = process.env.PORT || 10000;
 app.use(cors())
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -22,5 +23,6 @@ const upload = multer({ storage: storage });
 
 // Image upload route
 app.post('/api/upload', upload.single('image'), imageUpload);
+app.post('/api/edit', imageEdit);
 
 app.listen(port, hostname='0.0.0.0', () => console.log(`Server running on port ${port}`));

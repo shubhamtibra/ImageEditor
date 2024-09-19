@@ -1,0 +1,108 @@
+.upload-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .file-input-wrapper {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 20px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .file-input-wrapper:hover {
+    border-color: #008CBA;
+    background-color: rgba(0, 140, 186, 0.05);
+  }
+  
+  .file-input-wrapper input[type=file] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  .file-input-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .file-input-wrapper:hover .file-input-label {
+    color: #008CBA;
+  }
+  
+  .file-input-label::before {
+    content: '\f093';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 48px;
+    margin-bottom: 10px;
+  }
+  
+  .image-preview {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  .file-name {
+    word-break: break-all;
+    text-align: center;
+    padding: 0 10px;
+  }
+  
+  .upload-button {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.1s;
+    width: 100%;
+  }
+  
+  .upload-button:hover {
+    background-color: #007B9A;
+  }
+  
+  .upload-button:active {
+    transform: scale(0.98);
+  }
+  
+  .upload-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }

@@ -1,0 +1,207 @@
+.editor-container {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .image-container img {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+  }
+  
+  .controls-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .slider-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .slider-container label {
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: #e0e0e0;
+    outline: none;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+  
+  input[type="range"]:hover {
+    opacity: 1;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #3498db;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #3498db;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
+  }
+  
+  input[type="range"]:active::-webkit-slider-thumb {
+    box-shadow: 0 0 0 6px rgba(52, 152, 219, 0.2);
+  }
+  
+  input[type="range"]:active::-moz-range-thumb {
+    box-shadow: 0 0 0 6px rgba(52, 152, 219, 0.2);
+  }
+  
+  .rotate-button {
+    background-color: #3498db;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(52, 152, 219, 0.1);
+  }
+  
+  .rotate-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(52, 152, 219, 0.2);
+  }
+  
+  .rotate-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(52, 152, 219, 0.1);
+  }
+  
+  .rotate-button svg {
+    margin-right: 8px;
+    font-size: 18px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .rotate-button {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .file-type-selector {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 8px 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .file-type-selector label {
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  
+  .file-type-selector select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 4px 24px 4px 8px;
+    font-size: 14px;
+    color: #3498db;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%233498db' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 4px center;
+    background-size: 16px;
+  }
+  
+  .file-type-selector select:focus {
+    outline: none;
+  }
+  
+  .process-button {
+    background-color: #2ecc71;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(46, 204, 113, 0.1);
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .process-button:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(46, 204, 113, 0.2);
+  }
+  
+  .process-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(46, 204, 113, 0.1);
+  }
+  
+  .process-button svg {
+    margin-right: 8px;
+    font-size: 18px;
+  }
