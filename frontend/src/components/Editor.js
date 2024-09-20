@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { FaUndo, FaCheck } from 'react-icons/fa';
 import './Editor.css';
 
-function Editor({ upstreamPreviewName, handleEdit }) {
+function Editor({ upstreamPreviewName, handleEdit, imageObject}) {
   const [saturation, setSaturation] = useState(100);
   const [brightness, setBrightness] = useState(100);
   const [contrast, setContrast] = useState(100);
   const [rotation, setRotation] = useState(0);
   const [fileType, setFileType] = useState('jpg');
+  const [canvasKey, setCanvasKey] = useState(0);
+  const canvasRef = useRef()
+  let isMouseDown = useRef(false)
+  let initialMousePos = useRef({x: 0, y: 0})
+  useEffect(() => {
+    const canvasContext = canvasRef.current.getContext('2d')
+    canvasContext.drawImage(imageObject, 0, 0);
+  }, [imageObject, canvasKey]);
 
   const handleRotate = () => {
     setRotation((prevRotation) => (prevRotation + 90) % 360);
@@ -18,6 +26,35 @@ function Editor({ upstreamPreviewName, handleEdit }) {
     transform: `rotate(${rotation}deg)`,
     transition: 'all 0.3s ease',
   };
+
+  const getMousePos = (canvas, evt) => {
+    var rect = canvas.getBoundingClientRect();
+    return {
+        x: (evt.clientX - rect.left) / (rect.right - rect.left) * canvas.width,
+        y: (evt.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height
+    };
+  }
+  const handleMouseDown = (e) => {
+    setCanvasKey(canvasKey => canvasKey + 1);
+    isMouseDown.current = true
+    initialMousePos.current = getMousePos(canvasRef.current, e)
+    console.log("mouse down", initialMousePos)
+  }
+
+  const handleMouseUp = (e) => {
+    isMouseDown.current = false
+  }
+
+  const handleMouseMove = (e) => {
+    if (isMouseDown.current) {
+        const canvas = canvasRef.current
+        const mousePos = getMousePos(canvas, e)
+        console.log("mouse pos", mousePos)
+        const canvasContext = canvasRef.current.getContext('2d')
+        canvasContext.strokeStyle = "rgb(255 255 255)"
+        canvasContext.strokeRect(initialMousePos.current.x, initialMousePos.current.y, mousePos.x-initialMousePos.current.x, mousePos.y-initialMousePos.current.y)
+    }
+  }
 
   const renderSlider = (label, value, setValue, min = 0, max = 200) => (
     <div className="slider-container">
@@ -40,7 +77,10 @@ function Editor({ upstreamPreviewName, handleEdit }) {
 
   return (
     <div className="editor-container">
-      <div className="image-container">
+        <canvas key={canvasKey} ref={canvasRef} width={imageObject.width} height={imageObject.height} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} onMouseMove={handleMouseMove} />
+
+
+      {/* <div className="image-container">
         {upstreamPreviewName && (
           <img
             id="previewImage"
@@ -49,7 +89,7 @@ function Editor({ upstreamPreviewName, handleEdit }) {
             style={imageStyle}
           />
         )}
-      </div>
+      </div> */}
       <div className="controls-container">
         {renderSlider('Saturation', saturation, setSaturation)}
         {renderSlider('Brightness', brightness, setBrightness)}
