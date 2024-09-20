@@ -33,14 +33,15 @@ function App() {
     }
   };
 
-  const handleEdit = async (saturation, brightness, contrast, rotation, fileType) => {
+  const handleEdit = async (saturation, brightness, contrast, rotation, fileType, cropRect) => {
     const imageData = {
       filename: upstreamImageName,
       saturation,
       brightness,
       contrast,
       rotation,
-      fileType
+      fileType,
+      cropRect
     };
     try {
       const response = await fetch('http://localhost:10000/api/edit', {

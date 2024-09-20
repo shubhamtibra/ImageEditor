@@ -5,9 +5,12 @@ const path = require('path');
 async function imageEdit(req, res) {
   
   try {
-    const sharpData = sharp('uploads/' + req.body.filename)
-    //await sharpData.rotate(req.body.rotation).modulate({brightness: req.body.brightness, saturation: req.body.saturation}).linear(req.body.contrast/100, -(128 * req.body.contrast/100) + 128).toFile('uploads/' + 'final-' + req.body.filename)
-    await sharpData.rotate(req.body.rotation).modulate({brightness: req.body.brightness, saturation: req.body.saturation}).linear(req.body.contrast, -(128 * req.body.contrast) + 128).toFile('uploads/' + 'final-' + req.body.filename)
+    let sharpData = sharp('uploads/' + req.body.filename)
+    if (req.body.cropRect) {
+      sharpData = sharpData.extract(req.body.cropRect)
+    }
+    sharpData = sharpData.rotate(req.body.rotation).modulate({brightness: req.body.brightness, saturation: req.body.saturation}).linear(req.body.contrast, -(128 * req.body.contrast) + 128)
+    await sharpData.toFile('uploads/' + 'final-' + req.body.filename)
     res.status(200).json({message: "Image edited successfully",
       url: `${req.protocol}://localhost:10000/uploads/final-${req.body.filename}`,
     });
